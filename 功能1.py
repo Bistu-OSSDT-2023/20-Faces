@@ -22,10 +22,8 @@ def face_detect_demo(img):
 
     # Draw rectangles and display the number of faces
     for x, y, w, h in faces:
-        cv.rectangle(img, (x, y), (x + w, y + h), color=(0, 0, 255), thickness=2)
-
-    cv.putText(img, f"Faces: {face_count}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-    cv.imshow('result', img)
+        cv.putText(img, f"Faces: {face_count}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        cv.imshow('result', img)
 
 
 # Connect to the webcam
