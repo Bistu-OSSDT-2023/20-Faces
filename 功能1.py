@@ -3,32 +3,32 @@ import numpy as np
 
 
 def face_detect_demo(img):
-    # Convert the image to grayscale
+    # 将图像转换为灰度头像
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
-    # Load the face cascade classifier
+    # 加载人脸级联分类器
     face_detector = cv.CascadeClassifier('D:/opencv/sources/data/haarcascades/haarcascade_frontalface_default.xml')
 
-    # Detect faces in the grayscale image
+    # 在灰度图像中检测人脸
     faces = face_detector.detectMultiScale(gray, 1.25)
     face_count = len(faces)  # Count the number of faces detected
 
-    # Load the replacement image
+    # 加载替换图像
     replace_img = cv.imread('5.png')
 
     for x, y, w, h in faces:
-        # Replace the face region with the replacement image
+        # 将人脸区域替换为替换图像
         img[y:y + h, x:x + w] = cv.resize(replace_img, (w, h))
 
-    # Draw rectangles and display the number of faces
+    # 绘制矩形框并显示人脸数量
     for x, y, w, h in faces:
         cv.putText(img, f"Faces: {face_count}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
         cv.imshow('result', img)
 
 
-# Connect to the webcam
+# 连接到网络摄像头
 cap = cv.VideoCapture(0)
-cv.namedWindow('result')  # Create a window named 'result'
+cv.namedWindow('result')  # 创建名为'结果'的窗口
 
 while True:
     flag, frame = cap.read()
@@ -40,7 +40,7 @@ while True:
 
     face_detect_demo(frame)
 
-    if cv.waitKey(1) == ord('q'):  # Modify the keyboard input wait parameter
+    if cv.waitKey(1) == ord('q'):  # 修改键盘输入等待参数
         break
 
 cv.destroyAllWindows()
